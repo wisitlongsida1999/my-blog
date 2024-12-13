@@ -1,0 +1,140 @@
+---
+title: "The Basic Concept of Cryptography, Authentication, & Authorization"
+date: "2024-12-13"
+tags: ["cybersecurity", "cryptography", "authentication", "authorization"]
+summary: Understand the key concepts of cryptography, authentication, and authorization in cybersecurity. Learn how encryption and hashing protect your data online.
+---
+
+![Cybersecurity Basics](/static/images/cybersecurity/basic-cryptography-authen_1.png)
+
+**Hey there!** 🌟 Ever wondered how your private messages stay private or how your passwords are safe online? That’s where **cybersecurity** comes in! This guide will make complex topics like **Authentication, Authorization, Encryption, and Hashing** super easy to understand. Let’s get started! 🚀
+
+---
+
+### **Authentication, Authorization & Non-repudiation ✅❌**
+
+Let’s break it down:
+
+1. **Authentication**: This is how a system checks **who you are**. Like logging into your account with a password. 🤔
+2. **Authorization**: This is about what you're **allowed to do**, like accessing specific files. 🔑
+3. **Non-repudiation**: This makes sure you **can’t deny your actions**, like signing a digital document or completing a transaction. 🕵️‍♂️
+
+Think of it like a VIP event:
+
+- **Authentication**: You show your ID to prove you're on the guest list.
+- **Authorization**: The staff lets you into the VIP lounge.
+- **Non-repudiation**: You leave a signed guest book, so no one can say you didn’t attend.
+
+---
+
+### **What is Encryption? 🔐**
+
+Encryption is like a secret code that only the right person can crack. It scrambles your data so nobody else can read it. 😫
+
+- **Encryption**: Scramble the data. 🔀
+- **Decryption**: Unscramble it back to normal. 🔍
+
+---
+
+### **The Caesar Cipher 🏚️**
+
+This is one of the oldest encryption methods, used by Julius Caesar!
+
+1. Imagine the alphabet in a circle (A to Z). 🔄
+2. Choose a "key" (e.g., move 3 letters forward).
+    - A → D
+    - Hello → Khoor
+
+The receiver just reverses the shift to decode the message. Easy peasy! ✉️🔑
+
+---
+
+### **How Computers Use Encryption 💻**
+
+Computers handle encryption with **binary numbers** (0s and 1s). A common trick is the **XOR Operation**:
+
+- Compare two bits:
+    - **Different? → 1**
+    - **Same? → 0**
+
+**Example:**
+
+- Data: **1100**
+- Key: **1001**
+- Encrypted: **0101**
+
+Decrypt it the same way with the same key. Magic, right? ✨
+
+---
+
+### **Two Types of Encryption 🔑**
+
+1. **Symmetric Encryption**
+    - One key for both encryption and decryption.
+    - Fast but risky if someone steals the key.
+2. **Asymmetric Encryption**
+    - Two keys:
+        - **Public Key**: To encrypt data.
+        - **Private Key**: To decrypt it.
+    - Safer, but a bit slower.
+
+---
+
+### **Where Is Encryption Used? 🌍**
+
+- **Messaging apps**: Keep chats private. 📩
+- **Online banking**: Protect transactions. 💳
+- **Storing passwords**: Encrypt them for safety. 🔑
+
+---
+
+### **What is Hashing? 🔢**
+
+Hashing is like creating a unique fingerprint for your data. It turns your data into a fixed-size code (hash) using math.
+
+- It’s **one-way**, meaning you can’t reverse a hash back to the original data.
+- **Example:** Websites hash your password before storing it, so even if hacked, the real password isn’t visible. 🎉
+
+---
+
+### **Why Hashing Matters 🌟**
+
+1. **Detect Changes**: If even one small part of your data changes, the hash will be completely different. Perfect for checking file integrity. ✅
+2. **Secure Passwords**: Websites store hashes, not actual passwords, to keep them safe. 🔐
+
+---
+
+### **Hash Collisions ⚠️**
+
+A hash collision happens when two different inputs create the same hash. Rare, but it can happen.
+
+- Old methods like **MD5** and **SHA-1** are less secure. ❌
+- Modern methods like **SHA-256** are much safer. ✅
+
+---
+
+### **Add Extra Security with Salt 🧂**
+
+Adding a **Salt** (random string) to your password before hashing makes it harder for hackers to crack.
+
+- Password: **Password123**
+- Salt: **abcd1234**
+- Hashed: **Password123abcd1234**
+
+This makes attacks like Rainbow Tables useless. 📊
+
+---
+
+### **How Hashing is Used 💡**
+
+- **Verify Files**: Check if a downloaded file is safe. 📂
+- **Store Passwords**: Protect your login credentials. 🔑
+- **Detect Malware**: Compare hashes of suspicious files. 🛡️
+
+---
+
+### **In a Nutshell 🗘️**
+
+Encryption and hashing are the superheroes of cybersecurity! They keep your data safe, messages private, and passwords secure.
+
+Want to explore? Try tools like **`shasum`** (on Mac/Linux) or online hash generators to play around with encryption and hashing! 😊

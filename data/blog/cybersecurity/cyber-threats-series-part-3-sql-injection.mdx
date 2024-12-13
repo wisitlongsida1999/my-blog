@@ -1,0 +1,183 @@
+---
+title: "🛡️ Cyber Threats Series, Part 3: SQL Injection 💻💥"
+date: "2024-12-10"
+tags: ["cybersecurity", "sql-injection", "database-security"]
+summary: Learn about SQL Injection attacks, how they work, and ways to prevent them with proper security practices.
+---
+
+![SQL Injection Banner](/static/images/cybersecurity/cyber-threats-series-part-3-sql-injection_1.png)
+
+Welcome to Part 3 of the **Cyber Threats Series**, where we’ll learn about **SQL Injection** attacks, how they work, and ways to stop them. 🚀
+
+SQL Injection (SQLi) is a technique hackers use to manipulate a database by injecting malicious SQL commands through user inputs. Let’s break this down step by step to make it easy to understand! 🌟
+
+---
+
+## **What Is SQL? 🤔**
+
+SQL (Structured Query Language) is a programming language used to manage data in relational databases. Think of a database as a collection of tables like this:
+
+| orders           | items             |
+| ---------------- | ----------------- |
+| order_number (PK)| item_id (PK)      |
+| item_id (FK)     | price             |
+| cost             | description       |
+
+SQL helps applications retrieve and manage this data through **queries** like:
+
+- **`SELECT`**: Retrieve data
+- **`INSERT`**: Add new data
+- **`UPDATE`**: Modify existing data
+
+---
+
+## **What Is SQL Injection? 🚨**
+
+**SQL Injection (SQLi)** is a cyber attack where hackers insert malicious SQL commands into an input field to manipulate the database.
+
+### Example:
+
+A website login form may run this query:
+
+```sql
+SELECT * FROM Users WHERE username = 'input_username' AND password = 'input_password';
+```
+
+If a hacker enters:
+
+```sql
+' OR '1'='1
+```
+
+The query becomes:
+
+```sql
+SELECT * FROM Users WHERE username = '' OR '1'='1';
+```
+
+This always returns `TRUE`, giving the hacker unauthorized access! 😱
+
+---
+
+## **Types of SQL Injection Attacks 🛠️**
+
+### 1. **Union-Based Injection 🤝**
+
+Hackers use the **UNION** keyword to combine data from different tables.
+
+#### Example:
+
+```sql
+SELECT product_name FROM products WHERE name = 'soap' UNION SELECT username, password FROM Users;
+```
+
+This lets the hacker steal sensitive data like usernames and passwords.
+
+---
+
+### 2. **Error-Based Injection ❗**
+
+Attackers force the database to display errors containing sensitive information.
+
+#### Example:
+
+```sql
+asdf' UNION SELECT 1, exp(~(SELECT password FROM users WHERE id=1))-- -
+```
+
+This causes an error that reveals the password!
+
+---
+
+### 3. **Boolean-Based Injection ✅❌**
+
+Hackers test conditions by observing **True/False** responses.
+
+#### Example:
+
+```sql
+SELECT username FROM users WHERE id = '1' AND '1'='2';
+```
+
+If `False`, no data returns. If `True`, the hacker learns more about the database structure.
+
+---
+
+### 4. **Time-Based Injection 🕒**
+
+Hackers use SQL functions like `SLEEP()` to delay responses and confirm conditions.
+
+#### Example:
+
+```sql
+' OR IF(password='admin123', SLEEP(5), NULL)-- -
+```
+
+If the response delays by 5 seconds, the hacker knows the password is correct!
+
+---
+
+### 5. **Out-of-Band Injection 🌐**
+
+Rare and complex, this method uses channels like HTTP or DNS to send data to an attacker’s server.
+
+---
+
+## **How to Prevent SQL Injections 🛡️**
+
+### **1. Input Sanitization 🧹**
+
+- Remove dangerous characters like `'`, `;`, `-`.
+- Example: Replace `'` with `'`.
+
+⚠️ **Limitations**: If sanitization fails, the system is still vulnerable.
+
+---
+
+### **2. Use Prepared Statements 📄**
+
+Prepared statements securely separate SQL queries from user input, making injections almost impossible.
+
+#### Example:
+
+In **PHP**:
+
+```php
+$stmt = $conn->prepare("SELECT * FROM Users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+```
+
+This ensures any user input is treated as **data**, not **SQL code**.
+
+---
+
+## **Quiz Time! 🎉**
+
+### **Q1: What type of SQL injection delays responses to confirm conditions?**
+
+A) Error-Based Injection  
+B) Boolean-Based Injection  
+C) Time-Based Injection  
+D) Out-of-Band Injection  
+
+*Answer: C) Time-Based Injection*
+
+---
+
+### **Q2: Which is an example of input sanitization?**
+
+A) Removing dangerous characters like `'`, `;`, and `--`  
+B) Using prepared statements  
+C) Cleaning sensitive user data  
+D) Blocking SQL commands with firewalls  
+
+*Answer: A) Removing dangerous characters like `'`, `;`, and `--`*
+
+---
+
+## **Conclusion 🎯**
+
+SQL Injections are powerful and dangerous, but they’re preventable with the right techniques. By understanding how attackers exploit SQL and implementing **sanitization** and **prepared statements**, you can keep your systems secure. 💪
+
+Stay tuned for Part 4, where we’ll uncover more about cyber threats! 🚀

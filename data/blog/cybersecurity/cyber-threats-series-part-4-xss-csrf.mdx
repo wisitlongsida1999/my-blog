@@ -1,0 +1,113 @@
+---
+title: "🔒 Cyber Threats Series, Part 4: Cross-Site Scripting (XSS) & Cross-Site Request Forgery (CSRF)"
+date: "2024-12-11"
+tags: ["cybersecurity", "XSS", "CSRF", "web-vulnerabilities"]
+summary: Explore the differences between XSS and CSRF, two common web vulnerabilities, and learn how to prevent them.
+---
+
+![Cyber Threats XSS CSRF](/static/images/cybersecurity/cyber-threats-series-part-4-xss-csrf_1.png)
+
+Welcome to Part 4 of the **Cyber Threats Series**, where we’ll explore two critical web vulnerabilities: **Cross-Site Scripting (XSS)** and **Cross-Site Request Forgery (CSRF)**. Don’t worry, we’ll break it down to make it super easy to understand! 😊
+
+---
+
+## **What Is XSS (Cross-Site Scripting)? 🤔**
+
+**XSS** happens when a web application doesn’t properly sanitize user input and sends it back to the user. Attackers exploit this to inject malicious code (usually JavaScript), which can:
+
+- **Steal information** like cookies or session tokens. 🕵️‍♂️
+- **Redirect users** to malicious websites. 🌐
+- **Control the victim’s browser** to perform actions. 🚨
+
+---
+
+## **Types of XSS Attacks**
+
+### **1. Stored XSS 🗄️**
+
+Stored XSS occurs when the malicious script is **saved** on the web server, often in a database. It executes whenever users view the compromised data.
+
+**Example:** Posting a malicious comment like:
+
+```html
+<script>alert('Hacked!');</script>
+```
+
+This script runs whenever someone views the comment.
+
+---
+
+### **2. Reflected XSS 🔄**
+
+Reflected XSS involves injecting malicious code into a URL or form field. The script is "reflected" back in the server's response and executed in the user's browser.
+
+**Example:** A crafted URL like:
+
+```html
+https://example.com/search?query=<script>alert('Hacked!');</script>
+```
+
+---
+
+### **3. DOM-Based XSS 🖥️**
+
+In DOM-based XSS, the attack occurs entirely on the client side. The server doesn’t directly include the malicious input in its response, but client-side scripts process and execute it.
+
+---
+
+## **How to Prevent XSS 🛡️**
+
+- **Sanitize inputs:** Remove or encode dangerous characters.
+- **Use libraries:** Tools like DOMPurify clean inputs automatically.
+- **Content Security Policy (CSP):** Restrict the execution of unauthorized scripts.
+
+---
+
+## **What Is CSRF (Cross-Site Request Forgery)? 🤔**
+
+**CSRF** tricks authenticated users into performing actions they didn’t intend by exploiting their active session.
+
+---
+
+### **How Does CSRF Work?**
+
+1️⃣ A user logs into their account.  
+2️⃣ The attacker sends a malicious link.  
+3️⃣ The user's browser unknowingly performs actions using their session token.
+
+---
+
+## **How to Prevent CSRF 🛡️**
+
+- **CSRF Tokens:** Use unique, dynamically generated tokens for each request.
+- **Re-authentication:** Ask users to re-enter their password for critical actions.
+- **Validate Referrer Headers:** Ensure requests come from trusted sources.
+
+---
+
+## **Quiz Time! 🎉**
+
+### **Q1: What type of XSS attack stores malicious code on a server?**
+
+A) DOM-Based XSS  
+B) Reflected XSS  
+C) Stored XSS  
+
+*Answer: C) Stored XSS*
+
+### **Q2: What is an effective way to prevent CSRF?**
+
+A) Use JavaScript libraries.  
+B) Validate session cookies.  
+C) Use a CSRF token.  
+
+*Answer: C) Use a CSRF token*
+
+---
+
+## **Key Takeaways 📝**
+
+1️⃣ **XSS** allows attackers to run malicious scripts in users’ browsers. Prevent it with **sanitization** and **CSP**.  
+2️⃣ **CSRF** tricks users into performing unintended actions. Prevent it with **CSRF tokens** and **session validation**.  
+
+Stay tuned for the next part of the **Cyber Threats Series**! 🚀
